@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StayLocal — Local Guides & Experiences</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="experiences.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+          <path d="M15 2C10 2 5 8 5 14c0 8 10 16 10 16s10-8 10-16C25 8 20 2 15 2z" fill="#FF385C"/>
+          <circle cx="15" cy="13" r="4" fill="white"/>
+        </svg>
+        <span>StayLocal</span>
+      </a>
+
+      <!-- Page Tabs -->
+      <div class="page-tabs">
+        <a href="index.html" class="page-tab">Places to stay</a>
+        <a href="experiences.html" class="page-tab active">Local Guides</a>
+      </div>
+
+      <nav class="header-nav">
+        <a href="#" class="nav-link">Become a guide</a>
+        <button class="user-menu" onclick="toggleUserMenu()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+          <div class="user-avatar">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#717171" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+            </svg>
+          </div>
+        </button>
+        <div class="user-dropdown" id="userDropdown">
+          <a href="#" class="dropdown-item">Sign up</a>
+          <a href="#" class="dropdown-item">Log in</a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">Become a guide</a>
+          <a href="#" class="dropdown-item">Help</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="exp-hero">
+    <div class="exp-hero-bg"></div>
+    <div class="exp-hero-content">
+      <h1>Meet your local guide</h1>
+      <p>Hire a real local person to show you the hidden gems, authentic food, and secret spots only locals know.</p>
+
+      <div class="hero-search">
+        <div class="hero-search-inner">
+          <div class="hs-field">
+            <span class="hs-icon">📍</span>
+            <div>
+              <div class="hs-label">Where</div>
+              <input type="text" id="heroWhere" class="hs-input" placeholder="City or neighborhood" />
+            </div>
+          </div>
+          <div class="hs-divider"></div>
+          <div class="hs-field">
+            <span class="hs-icon">🎯</span>
+            <div>
+              <div class="hs-label">Experience type</div>
+              <select class="hs-select" id="heroType">
+                <option value="">Any experience</option>
+                <option value="food">Food & Drink</option>
+                <option value="nature">Nature & Hiking</option>
+                <option value="culture">Culture & History</option>
+                <option value="photo">Photography</option>
+                <option value="nightlife">Nightlife</option>
+                <option value="adventure">Adventure</option>
+                <option value="art">Art & Craft</option>
+                <option value="wellness">Wellness</option>
+              </select>
+            </div>
+          </div>
+          <div class="hs-divider"></div>
+          <div class="hs-field">
+            <span class="hs-icon">👥</span>
+            <div>
+              <div class="hs-label">Group size</div>
+              <select class="hs-select" id="heroGroup">
+                <option value="">Any size</option>
+                <option value="1">Just me (solo)</option>
+                <option value="2">2 people</option>
+                <option value="small">Small group (3–6)</option>
+                <option value="large">Large group (7+)</option>
+              </select>
+            </div>
+          </div>
+          <button class="hero-search-btn" onclick="handleHeroSearch()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3">
+              <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+            </svg>
+            Search
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORY CHIPS -->
+  <section class="chip-section">
+    <div class="chip-inner">
+      <button class="chip active" onclick="filterGuides('all', this)">✨ All</button>
+      <button class="chip" onclick="filterGuides('food', this)">🍜 Food & Drink</button>
+      <button class="chip" onclick="filterGuides('nature', this)">🥾 Nature & Hiking</button>
+      <button class="chip" onclick="filterGuides('culture', this)">🏛️ Culture & History</button>
+      <button class="chip" onclick="filterGuides('photo', this)">📸 Photography</button>
+      <button class="chip" onclick="filterGuides('nightlife', this)">🎶 Nightlife</button>
+      <button class="chip" onclick="filterGuides('adventure', this)">🧗 Adventure</button>
+      <button class="chip" onclick="filterGuides('art', this)">🎨 Art & Craft</button>
+      <button class="chip" onclick="filterGuides('wellness', this)">🧘 Wellness</button>
+    </div>
+  </section>
+
+  <!-- WHY SECTION -->
+  <section class="why-section">
+    <div class="why-inner">
+      <div class="why-card">
+        <div class="why-icon">🤝</div>
+        <h3>Real locals, not tours</h3>
+        <p>Your guide is a real person who lives here — not a tourist agency. Get authentic, personal experiences.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🔒</div>
+        <h3>Verified & reviewed</h3>
+        <p>Every guide is identity-verified, background-checked, and rated by previous travelers.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🎨</div>
+        <h3>Fully customizable</h3>
+        <p>Tell your guide what you love. They'll craft a personalized itinerary just for you.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">💬</div>
+        <h3>Chat before you book</h3>
+        <p>Message your guide directly to ask questions and make sure it's the perfect fit.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GUIDES GRID -->
+  <main class="main">
+    <div class="section-header">
+      <h2 id="gridTitle">All local guides</h2>
+      <span id="guideCount" class="guide-count"></span>
+    </div>
+    <div class="guides-grid" id="guidesGrid"></div>
+    <div class="no-results" id="noResults" style="display:none;">
+      <div class="no-results-icon">🔍</div>
+      <h3>No guides found</h3>
+      <p>Try a different category or location.</p>
+      <button onclick="filterGuides('all', document.querySelector('.chip'))" class="reset-btn">Show all guides</button>
+    </div>
+  </main>
+
+  <!-- GUIDE MODAL -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal()"></div>
+  <div class="listing-modal guide-modal" id="guideModal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-content" id="modalContent"></div>
+  </div>
+
+  <!-- BOOKING PANEL (slide-up) -->
+  <div class="booking-panel" id="bookingPanel">
+    <div class="booking-panel-inner">
+      <div class="bp-header">
+        <button class="bp-close" onclick="closeBooking()">✕</button>
+        <h3 id="bpTitle">Book your guide</h3>
+      </div>
+      <div class="bp-body">
+        <div class="bp-guide-row" id="bpGuideRow"></div>
+        <div class="bp-field">
+          <label>Select date</label>
+          <input type="date" id="bpDate" class="bp-input" />
+        </div>
+        <div class="bp-field">
+          <label>Duration</label>
+          <select class="bp-input" id="bpDuration">
+            <option value="2">2 hours</option>
+            <option value="4" selected>4 hours (half day)</option>
+            <option value="8">8 hours (full day)</option>
+          </select>
+        </div>
+        <div class="bp-field">
+          <label>Number of guests</label>
+          <div class="bp-counter">
+            <button onclick="changeGuests(-1)">−</button>
+            <span id="bpGuests">2</span>
+            <button onclick="changeGuests(1)">+</button>
+          </div>
+        </div>
+        <div class="bp-field">
+          <label>Message to guide (optional)</label>
+          <textarea class="bp-textarea" id="bpMessage" placeholder="Tell your guide about your interests, mobility needs, or anything else..."></textarea>
+        </div>
+        <div class="bp-price-breakdown" id="bpPriceBreakdown"></div>
+        <button class="bp-confirm-btn" onclick="confirmBooking()">Request to book</button>
+        <p class="bp-note">You won't be charged yet. The guide will confirm within 24 hours.</p>
+      </div>
+    </div>
+  </div>
+  <div class="bp-overlay" id="bpOverlay" onclick="closeBooking()"></div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <script src="experiences.js"></script>
+</body>
+</html>
