@@ -1,0 +1,2644 @@
+[
+  {
+    "id": "TC001",
+    "title": "Listings grid renders property cards with required summary fields",
+    "description": "Verifies the listings page shows a grid of cards and each card presents core summary information (image, title, location, rating, price).",
+    "category": "Listings Grid",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Places\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"listing card\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"listing card image\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"listing card title\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"listing card location\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"listing card rating\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"listing card price\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC002",
+    "title": "Open listing detail modal from a card",
+    "description": "Verifies clicking a listing card opens a detail modal showing images and the same key details.",
+    "category": "Listings Grid",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"listing card\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click on the first \"listing card\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"listing detail modal\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"listing detail modal image\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"listing detail modal title\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"listing detail modal location\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"listing detail modal rating\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC003",
+    "title": "Listing detail modal shows a price value",
+    "description": "Verifies the listing detail modal includes a visible price for the selected listing.",
+    "category": "Listings Grid",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"listing card\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click on the first \"listing card\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"listing detail modal\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"listing detail modal price\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC004",
+    "title": "Carousel dots on a listing card are present",
+    "description": "Verifies image carousel dots render on listing cards (even though dot navigation is non-interactive).",
+    "category": "Listings Grid",
+    "priority": "Low",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"listing card\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"carousel dots\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC005",
+    "title": "Carousel dots do not change the card image (known non-interactive behavior)",
+    "description": "Verifies clicking carousel dots does not change the displayed image on a listing card, matching the known limitation.",
+    "category": "Listings Grid",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"listing card\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click on the first \"carousel dot\" on the first listing card"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"listing card primary image\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click on a different \"carousel dot\" on the same listing card"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"listing card primary image\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC006",
+    "title": "Listings grid remains usable after scrolling (lazy loading not required)",
+    "description": "Verifies that after scrolling down the page, listing cards are still visible and can be interacted with.",
+    "category": "Listings Grid",
+    "priority": "Low",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"listing card\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the bottom of the listings grid"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"listing card\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click on a visible \"listing card\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"listing detail modal\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC007",
+    "title": "Filter listings by selecting a category chip",
+    "description": "Selecting a category in the categories bar filters the listings grid to matching results.",
+    "category": "Category Filter",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"categories bar\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click a category icon in the categories bar labeled \"Beach\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Beach\" is visible in the categories bar as the selected category"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"listings grid\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"listing card\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC008",
+    "title": "Reset filter using All category",
+    "description": "Clicking All resets the grid to show the unfiltered set of listings.",
+    "category": "Category Filter",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Click a category icon in the categories bar labeled \"Mountain\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Mountain\" is visible in the categories bar as the selected category"
+      },
+      {
+        "type": "action",
+        "description": "Click \"All\" to reset to all listings"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"All\" is visible in the categories bar as the selected category"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"listing card\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC009",
+    "title": "Switch categories updates the grid each time",
+    "description": "Switching from one category to another updates the listings grid accordingly.",
+    "category": "Category Filter",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Click a category icon in the categories bar labeled \"City\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"City\" is visible in the categories bar as the selected category"
+      },
+      {
+        "type": "action",
+        "description": "Click a category icon in the categories bar labeled \"Cabin\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Cabin\" is visible in the categories bar as the selected category"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"listings grid\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC010",
+    "title": "Category filter persists while staying on the page (no refresh)",
+    "description": "After filtering, the user can scroll and continue browsing within the filtered results without the filter clearing.",
+    "category": "Category Filter",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Click a category icon in the categories bar labeled \"Beach\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Beach\" is visible in the categories bar as the selected category"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the bottom of the listings grid"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"listings grid\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Beach\" is visible in the categories bar as the selected category"
+      }
+    ]
+  },
+  {
+    "id": "TC011",
+    "title": "Selecting the same category again does not break the grid",
+    "description": "Clicking an already-selected category does not cause the listings grid to disappear or become unusable.",
+    "category": "Category Filter",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Click a category icon in the categories bar labeled \"Mountain\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Mountain\" is visible in the categories bar as the selected category"
+      },
+      {
+        "type": "action",
+        "description": "Click a category icon in the categories bar labeled \"Mountain\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"listings grid\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"listing card\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC012",
+    "title": "Empty results state when a category has no matching listings",
+    "description": "If a selected category has no matches, the grid shows an empty state message rather than failing silently.",
+    "category": "Category Filter",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Click a category icon in the categories bar that is expected to have no matching listings"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"listings grid\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"No listings found\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC013",
+    "title": "Search returns matching listings and shows toast (using search button)",
+    "description": "Verifies that searching with a valid keyword filters the listings grid and shows a toast containing the query.",
+    "category": "Search",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Where search input\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Type \"beach\" into \"Where\" search input"
+      },
+      {
+        "type": "action",
+        "description": "Click the search button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Listings grid\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"beach\" is visible in the toast notification"
+      }
+    ]
+  },
+  {
+    "id": "TC014",
+    "title": "Search returns matching listings and shows toast (using Enter key)",
+    "description": "Verifies that pressing Enter in the Where input triggers search, updates the grid, and shows a toast with the query.",
+    "category": "Search",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Where search input\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Type \"mountain\" into \"Where\" search input"
+      },
+      {
+        "type": "action",
+        "description": "Press Enter"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Listings grid\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"mountain\" is visible in the toast notification"
+      }
+    ]
+  },
+  {
+    "id": "TC015",
+    "title": "Search is case-insensitive for matching and toast reflects typed query",
+    "description": "Verifies that mixed-case input still returns results and the toast contains the query as entered.",
+    "category": "Search",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Where search input\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Type \"PaRiS\" into \"Where\" search input"
+      },
+      {
+        "type": "action",
+        "description": "Click the search button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Listings grid\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"PaRiS\" is visible in the toast notification"
+      }
+    ]
+  },
+  {
+    "id": "TC016",
+    "title": "Search with leading/trailing spaces still works and shows toast",
+    "description": "Verifies that a query with extra whitespace triggers a search and the toast appears with the query string.",
+    "category": "Search",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Where search input\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Type \"  lake  \" into \"Where\" search input"
+      },
+      {
+        "type": "action",
+        "description": "Press Enter"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Listings grid\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"lake\" is visible in the toast notification"
+      }
+    ]
+  },
+  {
+    "id": "TC017",
+    "title": "No-results search shows empty state and toast with query",
+    "description": "Verifies that a query with no matches results in no listings shown and a toast displays the searched query.",
+    "category": "Search",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Where search input\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Type \"zzzz_nonexistent_place\" into \"Where\" search input"
+      },
+      {
+        "type": "action",
+        "description": "Click the search button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"No results\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"zzzz_nonexistent_place\" is visible in the toast notification"
+      }
+    ]
+  },
+  {
+    "id": "TC018",
+    "title": "Special characters in query do not break search and toast appears",
+    "description": "Verifies that entering special characters triggers search behavior and still displays a toast containing the query.",
+    "category": "Search",
+    "priority": "Low",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Where search input\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Type \"@#&*\" into \"Where\" search input"
+      },
+      {
+        "type": "action",
+        "description": "Press Enter"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Listings grid\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"@#&*\" is visible in the toast notification"
+      }
+    ]
+  },
+  {
+    "id": "TC019",
+    "title": "Consecutive searches update results and latest toast reflects newest query",
+    "description": "Verifies that running a second search after the first updates the grid again and shows a new toast with the latest query.",
+    "category": "Search",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Where search input\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Type \"city\" into \"Where\" search input"
+      },
+      {
+        "type": "action",
+        "description": "Click the search button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"city\" is visible in the toast notification"
+      },
+      {
+        "type": "action",
+        "description": "Type \"cabin\" into \"Where\" search input"
+      },
+      {
+        "type": "action",
+        "description": "Press Enter"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"cabin\" is visible in the toast notification"
+      }
+    ]
+  },
+  {
+    "id": "TC020",
+    "title": "Open listing detail modal shows core listing information",
+    "description": "Verifies that clicking a listing card opens the detail modal with key information visible.",
+    "category": "Listing Detail Modal",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Click a listing card"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Listing detail modal\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Listing images in modal\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Listing title in modal\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Listing location in modal\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Listing rating in modal\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Reserve button\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC021",
+    "title": "Modal displays host, description, and amenities sections",
+    "description": "Verifies the modal includes host information, a description area, and an amenities list for a listing.",
+    "category": "Listing Detail Modal",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Click a listing card"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Listing detail modal\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Host information\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Listing description\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Amenities section\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Amenities list\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC022",
+    "title": "Reserve from modal triggers booking confirmation toast",
+    "description": "Verifies that clicking Reserve in the modal shows a visible toast confirmation.",
+    "category": "Listing Detail Modal",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Click a listing card"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Listing detail modal\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Reserve\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Booking confirmation toast\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"reservation\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC023",
+    "title": "Close modal using the X control",
+    "description": "Verifies the modal can be dismissed via the close (X) control.",
+    "category": "Listing Detail Modal",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Click a listing card"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Listing detail modal\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"X\" close control on the modal"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Listing detail modal\" is not visible"
+      }
+    ]
+  },
+  {
+    "id": "TC024",
+    "title": "Close modal by clicking the overlay/backdrop",
+    "description": "Verifies the modal can be dismissed by clicking outside the modal on the overlay.",
+    "category": "Listing Detail Modal",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Click a listing card"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Listing detail modal\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click the modal overlay/backdrop outside the modal content"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Listing detail modal\" is not visible"
+      }
+    ]
+  },
+  {
+    "id": "TC025",
+    "title": "Reserve works after reopening the modal",
+    "description": "Verifies that after closing and reopening a listing modal, Reserve still triggers a booking toast.",
+    "category": "Listing Detail Modal",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Click a listing card"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"X\" close control on the modal"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Listing detail modal\" is not visible"
+      },
+      {
+        "type": "action",
+        "description": "Click a listing card"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Reserve\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Booking confirmation toast\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC026",
+    "title": "Toast appears while modal remains open after Reserve",
+    "description": "Verifies that clicking Reserve does not auto-close the modal and the toast is shown concurrently.",
+    "category": "Listing Detail Modal",
+    "priority": "Low",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Click a listing card"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Listing detail modal\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Reserve\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Booking confirmation toast\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Listing detail modal\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC027",
+    "title": "Like a listing shows liked state and 'Saved to wishlist' toast",
+    "description": "Verifies that clicking a listing heart toggles to liked and displays the saved toast message.",
+    "category": "Wishlist / Like",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"a listing card\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click the heart button on a listing card"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"the same listing card heart shows liked (red)\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Saved to wishlist\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC028",
+    "title": "Unlike a previously liked listing shows unliked state and 'Removed from wishlist' toast",
+    "description": "Verifies that clicking the heart again removes the like and shows the removed toast message.",
+    "category": "Wishlist / Like",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Click the heart button on a listing card"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"the same listing card heart shows liked (red)\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click the heart button on the same listing card"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"the same listing card heart shows unliked (white)\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Removed from wishlist\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC029",
+    "title": "Liking one listing does not automatically like other listings",
+    "description": "Verifies that the like state is isolated to the clicked listing card only.",
+    "category": "Wishlist / Like",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"multiple listing cards\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click the heart button on a listing card"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"that listing card heart shows liked (red)\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"a different listing card heart shows unliked (white)\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC030",
+    "title": "Rapid double toggle ends in expected final state (like then unlike)",
+    "description": "Verifies the UI can handle quick repeated clicks without leaving the heart in an inconsistent state.",
+    "category": "Wishlist / Like",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Click the heart button on a listing card"
+      },
+      {
+        "type": "action",
+        "description": "Click the heart button on the same listing card"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"the same listing card heart shows unliked (white)\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Removed from wishlist\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC031",
+    "title": "Wishlist like state is not persisted after page reload (known behavior)",
+    "description": "Verifies that after reloading the page the previously liked heart returns to unliked state as sessions are not persisted.",
+    "category": "Wishlist / Like",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Click the heart button on a listing card"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"the same listing card heart shows liked (red)\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"the same listing card heart shows unliked (white)\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC032",
+    "title": "Toast appears when saving to wishlist and is visible to the user",
+    "description": "Verifies that the toast UI appears on save action (visibility-only check).",
+    "category": "Wishlist / Like",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Click the heart button on a listing card"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Saved to wishlist\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"toast notification\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC033",
+    "title": "Toast appears when removing from wishlist and is visible to the user",
+    "description": "Verifies that the toast UI appears on remove action (visibility-only check).",
+    "category": "Wishlist / Like",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Click the heart button on a listing card"
+      },
+      {
+        "type": "action",
+        "description": "Click the heart button on the same listing card"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Removed from wishlist\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"toast notification\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC034",
+    "title": "Apply combined filters (price + place type + amenities) updates the listings grid",
+    "description": "Verifies that applying multiple filters from the modal updates the visible listings grid accordingly.",
+    "category": "Filters Modal",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Click the Filters button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Filters\" modal is visible"
+      },
+      {
+        "type": "action",
+        "description": "Type \"100\" into the min price input field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"300\" into the max price input field"
+      },
+      {
+        "type": "action",
+        "description": "Select \"Entire\" from the place type options"
+      },
+      {
+        "type": "action",
+        "description": "Check the \"Wifi\" amenity checkbox"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Show results\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Listings grid\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC035",
+    "title": "Clear all resets filter selections and returns to default results",
+    "description": "Verifies that using Clear all resets the filters and restores the grid to an unfiltered state after applying constraints.",
+    "category": "Filters Modal",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Click the Filters button"
+      },
+      {
+        "type": "action",
+        "description": "Type \"150\" into the min price input field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"200\" into the max price input field"
+      },
+      {
+        "type": "action",
+        "description": "Check the \"Kitchen\" amenity checkbox"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Show results\""
+      },
+      {
+        "type": "action",
+        "description": "Click the Filters button"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Clear all\""
+      },
+      {
+        "type": "action",
+        "description": "Click \"Show results\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Listings grid\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC036",
+    "title": "Close filters modal using the X control",
+    "description": "Verifies that the modal can be dismissed via the close (X) control without applying changes.",
+    "category": "Filters Modal",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Click the Filters button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Filters\" modal is visible"
+      },
+      {
+        "type": "action",
+        "description": "Type \"120\" into the min price input field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"X\" close control on the modal"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Filters\" modal is not visible"
+      }
+    ]
+  },
+  {
+    "id": "TC037",
+    "title": "Close filters modal by clicking the overlay/backdrop",
+    "description": "Verifies that clicking outside the modal closes it (overlay close).",
+    "category": "Filters Modal",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Click the Filters button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Filters\" modal is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click the modal overlay/backdrop outside the modal content"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Filters\" modal is not visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Listings grid\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC038",
+    "title": "Invalid price range (min greater than max) results in empty results state",
+    "description": "Verifies that entering a minimum price greater than maximum price leads to no visible results (or an empty state) after applying.",
+    "category": "Filters Modal",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Click the Filters button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Filters\" modal is visible"
+      },
+      {
+        "type": "action",
+        "description": "Type \"500\" into the min price input field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"100\" into the max price input field"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Show results\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"No results\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC039",
+    "title": "Filter by place type only (no price/amenities)",
+    "description": "Verifies that selecting only a place type and applying filters updates the visible listing set.",
+    "category": "Filters Modal",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Click the Filters button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Filters\" modal is visible"
+      },
+      {
+        "type": "action",
+        "description": "Select \"Private\" from the place type options"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Show results\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Listings grid\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Private\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC040",
+    "title": "Filter by amenities only (multiple checkboxes)",
+    "description": "Verifies that selecting multiple amenities and applying filters updates the results and does not error.",
+    "category": "Filters Modal",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Click the Filters button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Filters\" modal is visible"
+      },
+      {
+        "type": "action",
+        "description": "Check the \"Wifi\" amenity checkbox"
+      },
+      {
+        "type": "action",
+        "description": "Check the \"Pool\" amenity checkbox"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Show results\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Listings grid\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC041",
+    "title": "Extreme price filters produce empty results state",
+    "description": "Verifies that setting a very narrow/large price range that yields no matches shows an empty state rather than breaking the UI.",
+    "category": "Filters Modal",
+    "priority": "Low",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Click the Filters button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Filters\" modal is visible"
+      },
+      {
+        "type": "action",
+        "description": "Type \"99999\" into the min price input field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"100000\" into the max price input field"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Show results\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"No results\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC042",
+    "title": "Open and close the user menu dropdown from the header",
+    "description": "Verifies the header hamburger+avatar toggle opens the user menu dropdown and clicking outside closes it.",
+    "category": "User Menu Dropdown",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"hamburger + avatar button\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"hamburger + avatar\" button in the header"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Sign up\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Log in\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Become a host\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Help\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click on an empty area of the page outside the dropdown"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Sign up\" is not visible"
+      }
+    ]
+  },
+  {
+    "id": "TC043",
+    "title": "Toggle user menu dropdown open and closed via repeated clicks",
+    "description": "Verifies the same header button toggles the dropdown state when clicked repeatedly.",
+    "category": "User Menu Dropdown",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"hamburger + avatar\" button in the header"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Help\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"hamburger + avatar\" button in the header"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Help\" is not visible"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"hamburger + avatar\" button in the header"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Help\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC044",
+    "title": "Sign up link is a non-functional placeholder (no auth flow)",
+    "description": "Verifies clicking Sign up does not start a real authentication process or navigate away from the current page.",
+    "category": "User Menu Dropdown",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"hamburger + avatar\" button in the header"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Sign up\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Sign up\" in the dropdown"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/index.html\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"places to stay listings\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC045",
+    "title": "Log in link is a non-functional placeholder (no auth flow)",
+    "description": "Verifies clicking Log in does not navigate to a login page or show a login form.",
+    "category": "User Menu Dropdown",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"hamburger + avatar\" button in the header"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Log in\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Log in\" in the dropdown"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/index.html\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Log in\" is not visible"
+      }
+    ]
+  },
+  {
+    "id": "TC046",
+    "title": "Become a host link is a non-functional placeholder",
+    "description": "Verifies clicking Become a host does not navigate to another route and leaves the user on the listings page.",
+    "category": "User Menu Dropdown",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"hamburger + avatar\" button in the header"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Become a host\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Become a host\" in the dropdown"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/index.html\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"places to stay listings\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC047",
+    "title": "Help link is a non-functional placeholder",
+    "description": "Verifies clicking Help does not navigate to another page and does not open an in-page help view.",
+    "category": "User Menu Dropdown",
+    "priority": "Low",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"hamburger + avatar\" button in the header"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Help\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Help\" in the dropdown"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/index.html\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"places to stay listings\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC048",
+    "title": "User menu dropdown can be closed using the Escape key",
+    "description": "Verifies the dropdown closes when the user presses Escape (keyboard accessibility baseline).",
+    "category": "User Menu Dropdown",
+    "priority": "Low",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"hamburger + avatar\" button in the header"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Sign up\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Press \"Escape\" key"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Sign up\" is not visible"
+      }
+    ]
+  },
+  {
+    "id": "TC049",
+    "title": "View local guide cards on Local Guides page",
+    "description": "Verifies the Local Guides page loads and displays guide cards with key fields visible.",
+    "category": "Local Guides Listing",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /experiences.html"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify page title contains \"Experiences\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"the category chips filter bar\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"a guide card\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"a guide card photo\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"a guide card name\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"a guide card rating\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"a guide card price\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC050",
+    "title": "Filter guides by a category chip with matching results",
+    "description": "Verifies selecting a category chip filters the guide cards to matching category results.",
+    "category": "Local Guides Listing",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /experiences.html"
+      },
+      {
+        "type": "action",
+        "description": "Click on the first category chip that is not \"All\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"a guide card\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Category\" is visible on a guide card"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"the selected category chip\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC051",
+    "title": "Open guide detail modal from a guide card",
+    "description": "Verifies clicking a guide card opens a detail modal with guide information.",
+    "category": "Local Guides Listing",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /experiences.html"
+      },
+      {
+        "type": "action",
+        "description": "Click on the first visible guide card"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"the guide detail modal\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"guide name in the modal\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"guide location in the modal\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"guide price in the modal\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC052",
+    "title": "Close guide detail modal",
+    "description": "Verifies the guide detail modal can be dismissed and the user returns to the listings view.",
+    "category": "Local Guides Listing",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /experiences.html"
+      },
+      {
+        "type": "action",
+        "description": "Click on the first visible guide card"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"the guide detail modal\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click on the modal close button (\"X\" or \"Close\")"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"the guide detail modal\" is not visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"a guide card\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC053",
+    "title": "No-results state when selecting a category with zero matches",
+    "description": "Verifies the UI shows an empty state when a category chip yields no matching guides.",
+    "category": "Local Guides Listing",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /experiences.html"
+      },
+      {
+        "type": "action",
+        "description": "Click on a category chip that yields no matches"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"No results\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"a guide card\" is not visible"
+      }
+    ]
+  },
+  {
+    "id": "TC054",
+    "title": "Switch between two categories and see the listing update each time",
+    "description": "Verifies changing the selected category chip updates the guide list accordingly.",
+    "category": "Local Guides Listing",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /experiences.html"
+      },
+      {
+        "type": "action",
+        "description": "Click on the first category chip that is not \"All\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"the selected category chip\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click on a different category chip"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"the selected category chip\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"a guide card\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC055",
+    "title": "Reset filter back to All and confirm guides repopulate",
+    "description": "Verifies returning to the All category restores the full guide list after filtering.",
+    "category": "Local Guides Listing",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /experiences.html"
+      },
+      {
+        "type": "action",
+        "description": "Click on the first category chip that is not \"All\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"a guide card\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click on the \"All\" category chip"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"a guide card\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"the \"All\" category chip is selected\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC056",
+    "title": "Guide card shows required metadata (category and location visible)",
+    "description": "Verifies each guide card presents category and location information in the listing view.",
+    "category": "Local Guides Listing",
+    "priority": "Low",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /experiences.html"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"a guide card\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"a guide card category\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"a guide card location\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"a guide card price\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC057",
+    "title": "Filter guides by city + experience type + group size from hero search",
+    "description": "Verifies the hero search filters the guide results when all fields are provided.",
+    "category": "Guide Hero Search",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /experiences.html"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Where\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Type \"Lisbon\" into the \"Where\" input"
+      },
+      {
+        "type": "action",
+        "description": "Select \"Food\" from the experience type dropdown"
+      },
+      {
+        "type": "action",
+        "description": "Select \"1-2\" from the group size dropdown"
+      },
+      {
+        "type": "action",
+        "description": "Click the Search button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Lisbon\" is visible in the guide results area"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"guide results list/grid\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC058",
+    "title": "Filter guides by city only (leave dropdowns at default)",
+    "description": "Verifies searching by just city still returns and filters results (if defaults are used for other fields).",
+    "category": "Guide Hero Search",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /experiences.html"
+      },
+      {
+        "type": "action",
+        "description": "Type \"Lisbon\" into the \"Where\" input"
+      },
+      {
+        "type": "action",
+        "description": "Click the Search button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"guide results list/grid\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Lisbon\" is visible in the guide results area"
+      }
+    ]
+  },
+  {
+    "id": "TC059",
+    "title": "Filter guides by experience type only (city left blank)",
+    "description": "Verifies the hero search can filter guides when only an experience type is selected.",
+    "category": "Guide Hero Search",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /experiences.html"
+      },
+      {
+        "type": "action",
+        "description": "Select \"Nature\" from the experience type dropdown"
+      },
+      {
+        "type": "action",
+        "description": "Click the Search button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"guide results list/grid\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Nature\" is visible in the guide results area"
+      }
+    ]
+  },
+  {
+    "id": "TC060",
+    "title": "Filter guides by group size only (city and experience type left blank)",
+    "description": "Verifies selecting only group size updates the displayed guides.",
+    "category": "Guide Hero Search",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /experiences.html"
+      },
+      {
+        "type": "action",
+        "description": "Select \"3-5\" from the group size dropdown"
+      },
+      {
+        "type": "action",
+        "description": "Click the Search button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"guide results list/grid\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"3-5\" is visible in the guide results area"
+      }
+    ]
+  },
+  {
+    "id": "TC061",
+    "title": "No results when city is blank and no other filters are chosen (empty search)",
+    "description": "Verifies clicking Search with an empty city and default filters shows a clear no-results state (or zero matching cards).",
+    "category": "Guide Hero Search",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /experiences.html"
+      },
+      {
+        "type": "action",
+        "description": "Click the Search button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"No\" is visible in the results empty-state message"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"results\" is visible in the results empty-state message"
+      }
+    ]
+  },
+  {
+    "id": "TC062",
+    "title": "No results for a city that has no guides",
+    "description": "Verifies searching for an unsupported city returns no results.",
+    "category": "Guide Hero Search",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /experiences.html"
+      },
+      {
+        "type": "action",
+        "description": "Type \"Atlantis\" into the \"Where\" input"
+      },
+      {
+        "type": "action",
+        "description": "Click the Search button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"No\" is visible in the results empty-state message"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"results\" is visible in the results empty-state message"
+      }
+    ]
+  },
+  {
+    "id": "TC063",
+    "title": "City search is case-insensitive",
+    "description": "Verifies that the city filter matches regardless of input casing.",
+    "category": "Guide Hero Search",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /experiences.html"
+      },
+      {
+        "type": "action",
+        "description": "Type \"lIsBoN\" into the \"Where\" input"
+      },
+      {
+        "type": "action",
+        "description": "Click the Search button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"guide results list/grid\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Lisbon\" is visible in the guide results area"
+      }
+    ]
+  },
+  {
+    "id": "TC064",
+    "title": "City search trims leading/trailing spaces",
+    "description": "Verifies that extra whitespace in the city input does not prevent matches.",
+    "category": "Guide Hero Search",
+    "priority": "Low",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /experiences.html"
+      },
+      {
+        "type": "action",
+        "description": "Type \"  Lisbon  \" into the \"Where\" input"
+      },
+      {
+        "type": "action",
+        "description": "Click the Search button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"guide results list/grid\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Lisbon\" is visible in the guide results area"
+      }
+    ]
+  },
+  {
+    "id": "TC065",
+    "title": "Open guide detail modal and verify core guide information is displayed",
+    "description": "Verifies that clicking a guide card opens a detail modal showing expected guide information (photo, name, bio, specialties, reviews).",
+    "category": "Guide Detail Modal",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /experiences.html"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Local Guides\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click a guide card"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Guide detail modal\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Guide photo\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Guide name\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Guide bio\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Reviews\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC066",
+    "title": "Open guide detail modal and verify specialties section is visible",
+    "description": "Verifies the modal includes a visible specialties section for the selected guide.",
+    "category": "Guide Detail Modal",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /experiences.html"
+      },
+      {
+        "type": "action",
+        "description": "Click a guide card"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Guide detail modal\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Specialties\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Specialties list\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Book this guide\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC067",
+    "title": "Book from guide detail modal opens booking panel",
+    "description": "Verifies that selecting \"Book this guide\" from the guide detail modal opens the booking panel.",
+    "category": "Guide Detail Modal",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /experiences.html"
+      },
+      {
+        "type": "action",
+        "description": "Click a guide card"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Guide detail modal\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Book this guide\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Booking panel\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Book\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC068",
+    "title": "Close modal using the X button",
+    "description": "Verifies that clicking the modal close (X) closes the guide detail modal without opening booking.",
+    "category": "Guide Detail Modal",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /experiences.html"
+      },
+      {
+        "type": "action",
+        "description": "Click a guide card"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Guide detail modal\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click \"X\" on the guide detail modal"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Guide detail modal\" is not visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Booking panel\" is not visible"
+      }
+    ]
+  },
+  {
+    "id": "TC069",
+    "title": "Close modal by clicking the overlay",
+    "description": "Verifies that clicking outside the modal (on the overlay) closes the guide detail modal without opening booking.",
+    "category": "Guide Detail Modal",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /experiences.html"
+      },
+      {
+        "type": "action",
+        "description": "Click a guide card"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Guide detail modal\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click on the modal overlay outside the modal content"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Guide detail modal\" is not visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Booking panel\" is not visible"
+      }
+    ]
+  },
+  {
+    "id": "TC070",
+    "title": "Modal content updates when opening a different guide after closing the first",
+    "description": "Verifies that after closing one guide modal, opening another guide shows a different guide name (indicating content updates per selection).",
+    "category": "Guide Detail Modal",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /experiences.html"
+      },
+      {
+        "type": "action",
+        "description": "Click a guide card"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Guide name\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click \"X\" on the guide detail modal"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Guide detail modal\" is not visible"
+      },
+      {
+        "type": "action",
+        "description": "Click a different guide card"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Guide detail modal\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Guide name\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC071",
+    "title": "Booking panel is not shown until user clicks Book this guide",
+    "description": "Verifies that simply opening the guide modal does not automatically open the booking panel.",
+    "category": "Guide Detail Modal",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /experiences.html"
+      },
+      {
+        "type": "action",
+        "description": "Click a guide card"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Guide detail modal\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Booking panel\" is not visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Book this guide\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC072",
+    "title": "Open guide booking panel from a guide detail modal",
+    "description": "Verifies a user can open the slide-up booking panel from a guide detail modal on the Local Guides page.",
+    "category": "Guide Booking Panel",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /experiences.html"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Local Guides\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click on a guide card \"View details\" (or equivalent details control)"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Guide details\" modal is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click on \"Book this guide\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Booking\" panel (slide-up panel) is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC073",
+    "title": "Successful booking request with date, duration, guests, and optional message",
+    "description": "Verifies a user can complete a booking request and sees confirmation plus an updated price breakdown.",
+    "category": "Guide Booking Panel",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /experiences.html"
+      },
+      {
+        "type": "action",
+        "description": "Click on a guide card \"View details\" (or equivalent details control)"
+      },
+      {
+        "type": "action",
+        "description": "Click on \"Book this guide\""
+      },
+      {
+        "type": "action",
+        "description": "Select a date using the date picker"
+      },
+      {
+        "type": "action",
+        "description": "Choose duration \"4h\""
+      },
+      {
+        "type": "action",
+        "description": "Click the \"+\" control to increase guests by 1"
+      },
+      {
+        "type": "action",
+        "description": "Type \"Looking forward to a local food tour.\" into the message field"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Price\" or \"Total\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click \"Request to book\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Booking confirmed\" or \"Request sent\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC074",
+    "title": "Price breakdown updates when switching duration options",
+    "description": "Verifies the price breakdown visibly updates when changing duration selections.",
+    "category": "Guide Booking Panel",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /experiences.html"
+      },
+      {
+        "type": "action",
+        "description": "Click on a guide card \"View details\" (or equivalent details control)"
+      },
+      {
+        "type": "action",
+        "description": "Click on \"Book this guide\""
+      },
+      {
+        "type": "action",
+        "description": "Select a date using the date picker"
+      },
+      {
+        "type": "action",
+        "description": "Choose duration \"2h\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Total\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Choose duration \"8h\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Total\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC075",
+    "title": "Price breakdown updates when increasing and decreasing guests",
+    "description": "Verifies the guest counter changes with +/- and the price breakdown remains visible and updates accordingly.",
+    "category": "Guide Booking Panel",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /experiences.html"
+      },
+      {
+        "type": "action",
+        "description": "Click on a guide card \"View details\" (or equivalent details control)"
+      },
+      {
+        "type": "action",
+        "description": "Click on \"Book this guide\""
+      },
+      {
+        "type": "action",
+        "description": "Select a date using the date picker"
+      },
+      {
+        "type": "action",
+        "description": "Choose duration \"4h\""
+      },
+      {
+        "type": "action",
+        "description": "Click the \"+\" control to increase guests by 1"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Guests\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"-\" control to decrease guests by 1"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Total\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC076",
+    "title": "Booking blocked when date is not selected",
+    "description": "Verifies a validation error (or prompt) appears and booking is not submitted when requesting without a date.",
+    "category": "Guide Booking Panel",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /experiences.html"
+      },
+      {
+        "type": "action",
+        "description": "Click on a guide card \"View details\" (or equivalent details control)"
+      },
+      {
+        "type": "action",
+        "description": "Click on \"Book this guide\""
+      },
+      {
+        "type": "action",
+        "description": "Choose duration \"2h\""
+      },
+      {
+        "type": "action",
+        "description": "Click \"Request to book\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Select a date\" or \"Please choose a date\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Booking confirmed\" or \"Request sent\" is not visible"
+      }
+    ]
+  },
+  {
+    "id": "TC077",
+    "title": "Optional message is not required to submit booking",
+    "description": "Verifies a booking can be requested with an empty message field.",
+    "category": "Guide Booking Panel",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /experiences.html"
+      },
+      {
+        "type": "action",
+        "description": "Click on a guide card \"View details\" (or equivalent details control)"
+      },
+      {
+        "type": "action",
+        "description": "Click on \"Book this guide\""
+      },
+      {
+        "type": "action",
+        "description": "Select a date using the date picker"
+      },
+      {
+        "type": "action",
+        "description": "Choose duration \"2h\""
+      },
+      {
+        "type": "action",
+        "description": "Click \"Request to book\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Booking confirmed\" or \"Request sent\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC078",
+    "title": "Booking confirmation toast appears after request and panel remains usable",
+    "description": "Verifies the confirmation toast appears after requesting and the panel still shows booking controls (no crash/blank state).",
+    "category": "Guide Booking Panel",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /experiences.html"
+      },
+      {
+        "type": "action",
+        "description": "Click on a guide card \"View details\" (or equivalent details control)"
+      },
+      {
+        "type": "action",
+        "description": "Click on \"Book this guide\""
+      },
+      {
+        "type": "action",
+        "description": "Select a date using the date picker"
+      },
+      {
+        "type": "action",
+        "description": "Choose duration \"8h\""
+      },
+      {
+        "type": "action",
+        "description": "Click \"Request to book\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Booking confirmed\" or \"Request sent\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Request to book\" button is visible"
+      }
+    ]
+  }
+]

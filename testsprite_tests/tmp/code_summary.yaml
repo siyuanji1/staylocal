@@ -1,0 +1,189 @@
+version: "2"
+type: frontend
+tech_stack:
+  - language: HTML5, CSS3, Vanilla JavaScript
+  - framework: None (static site)
+  - ui_library: None
+  - other: Google Fonts (Inter), Unsplash images
+routes:
+  - path: /index.html
+    file: index.html
+    auth_required: false
+    description: Places to stay listings page (Airbnb-like)
+  - path: /experiences.html
+    file: experiences.html
+    auth_required: false
+    description: Local Guides page — hire a real local person as a guide
+features:
+  - name: Listings Grid
+    description: Displays property listing cards in a responsive grid
+    files:
+      - index.html
+      - app.js
+      - styles.css
+    entry_route: /index.html
+    user_interactions:
+      - View listing cards with image, title, location, rating, price
+      - Click a listing card to open the detail modal
+    api_calls: []
+    auth_required: false
+
+  - name: Category Filter
+    description: Filter listings by category (beach, mountain, city, cabin, etc.)
+    files:
+      - index.html
+      - app.js
+    entry_route: /index.html
+    user_interactions:
+      - Click a category icon in the categories bar
+      - Grid updates to show only listings matching the selected category
+      - Click "All" to reset to all listings
+    api_calls: []
+    auth_required: false
+
+  - name: Search
+    description: Search listings by destination, title, or category keyword
+    files:
+      - index.html
+      - app.js
+    entry_route: /index.html
+    user_interactions:
+      - Type a query in the "Where" search input
+      - Press Enter or click the search button
+      - Grid updates to show matching listings
+      - Toast notification appears with search query
+    api_calls: []
+    auth_required: false
+
+  - name: Listing Detail Modal
+    description: Opens a modal with full details of a selected listing
+    files:
+      - index.html
+      - app.js
+      - styles.css
+    entry_route: /index.html
+    user_interactions:
+      - Click a listing card
+      - Modal opens with images, title, location, rating, host, description, amenities
+      - Click Reserve button to trigger booking toast
+      - Click X or overlay to close modal
+    api_calls: []
+    auth_required: false
+
+  - name: Wishlist / Like
+    description: Save or remove listings from a wishlist
+    files:
+      - index.html
+      - app.js
+    entry_route: /index.html
+    user_interactions:
+      - Click the heart button on a listing card
+      - Heart toggles between liked (red) and unliked (white)
+      - Toast notification shows "Saved to wishlist" or "Removed from wishlist"
+    api_calls: []
+    auth_required: false
+
+  - name: Filters Modal
+    description: Filter listings by price range, place type, and amenities
+    files:
+      - index.html
+      - app.js
+      - styles.css
+    entry_route: /index.html
+    user_interactions:
+      - Click the Filters button
+      - Adjust min/max price inputs
+      - Select place type (any, entire, private, shared)
+      - Check amenity checkboxes (wifi, kitchen, pool, etc.)
+      - Click "Show results" to apply filters
+      - Click "Clear all" to reset filters
+      - Click X or overlay to close modal
+    api_calls: []
+    auth_required: false
+
+  - name: User Menu Dropdown
+    description: Toggle sign up / log in / become a host dropdown
+    files:
+      - index.html
+      - app.js
+    entry_route: /index.html
+    user_interactions:
+      - Click the hamburger + avatar button in the header
+      - Dropdown opens with Sign up, Log in, Become a host, Help links
+      - Click outside to close dropdown
+    api_calls: []
+    auth_required: false
+
+  - name: Local Guides Listing
+    description: Browse and filter local guide profiles by category
+    files:
+      - experiences.html
+      - experiences.js
+      - experiences.css
+    entry_route: /experiences.html
+    user_interactions:
+      - View guide cards with photo, name, category, rating, price, location
+      - Click category chips to filter guides
+      - Click a guide card to open guide detail modal
+    api_calls: []
+    auth_required: false
+
+  - name: Guide Hero Search
+    description: Search for local guides by city and experience type
+    files:
+      - experiences.html
+      - experiences.js
+    entry_route: /experiences.html
+    user_interactions:
+      - Type a city in the "Where" input
+      - Select experience type from dropdown
+      - Select group size from dropdown
+      - Click Search button to filter guide results
+    api_calls: []
+    auth_required: false
+
+  - name: Guide Detail Modal
+    description: Opens detailed view of a local guide with booking option
+    files:
+      - experiences.html
+      - experiences.js
+      - experiences.css
+    entry_route: /experiences.html
+    user_interactions:
+      - Click a guide card
+      - Modal shows guide photo, name, bio, specialties, reviews
+      - Click "Book this guide" to open booking panel
+      - Click X or overlay to close modal
+    api_calls: []
+    auth_required: false
+
+  - name: Guide Booking Panel
+    description: Slide-up panel to request booking a local guide
+    files:
+      - experiences.html
+      - experiences.js
+      - experiences.css
+    entry_route: /experiences.html
+    user_interactions:
+      - Select a date using date picker
+      - Choose duration (2h, 4h, 8h)
+      - Adjust number of guests with +/- counter
+      - Write optional message to guide
+      - Click "Request to book" to confirm booking
+      - Price breakdown updates based on duration and guests
+    api_calls: []
+    auth_required: false
+
+known_limitations:
+  - issue: No real authentication — Sign up/Log in links are non-functional
+    location: index.html, experiences.html
+    impact: User sessions not persisted; wishlist resets on page reload
+  - issue: Check-in/Check-out dates use browser prompt() dialogs instead of a proper date picker
+    location: index.html (openSearch function in app.js)
+    impact: Poor UX on some browsers; not mobile friendly
+  - issue: No backend — all data is hardcoded in JS arrays
+    location: app.js, experiences.js
+    impact: Bookings and reservations are toast-only, not persisted
+  - issue: Image carousel dots are rendered but dot navigation is not interactive
+    location: app.js (createCard function)
+    impact: Users cannot manually navigate listing images on cards

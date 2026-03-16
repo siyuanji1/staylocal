@@ -1,0 +1,18 @@
+{
+  "status": "commited",
+  "type": "frontend",
+  "scope": "codebase",
+  "localEndpoint": "http://localhost:3000",
+  "executionArgs": {
+    "projectName": "Hackathon",
+    "projectPath": "/Users/adam/Desktop/Hackathon",
+    "testIds": [],
+    "additionalInstruction": "",
+    "serverMode": "development",
+    "envs": {
+      "API_KEY": "sk-user-CEAaGkL7ZnouYSQmD86a2mjPGTEI26QqSi1nIxXXCYCn4pDC8PpDxcHEsMFzY8ztdq9_RE1EcW-jtCFv0rWX4bABCnOKBey7iVmv1NxWyMV_KWViJy1aLihaEs1NHZPYi3o"
+    }
+  },
+  "serverPort": 56634,
+  "proxy": "http://d74dfd04-97f4-400b-93cc-493b237823d8:5LEn8X7gpPk6cFRjZQPNGnubFPoAEEjM@tun.testsprite.com:8080"
+}
