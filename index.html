@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>StayLocal — Find Your Perfect Local Stay</title>
+  <title>StayLocal — Local Guides & Experiences</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="experiences.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -14,7 +14,6 @@
   <!-- HEADER -->
   <header class="header">
     <div class="header-inner">
-      <!-- Logo -->
       <a href="index.html" class="logo">
         <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
           <path d="M15 2C10 2 5 8 5 14c0 8 10 16 10 16s10-8 10-16C25 8 20 2 15 2z" fill="#FF385C"/>
@@ -25,41 +24,12 @@
 
       <!-- Page Tabs -->
       <div class="page-tabs">
-        <a href="index.html" class="page-tab active">Places to stay</a>
-        <a href="experiences.html" class="page-tab">Local Guides</a>
+        <a href="stays.html" class="page-tab">Places to stay</a>
+        <a href="index.html" class="page-tab active">Local Guides</a>
       </div>
 
-      <!-- Search Bar -->
-      <div class="search-bar" id="searchBar">
-        <div class="search-segment" onclick="openSearch('where')">
-          <span class="search-label">Where</span>
-          <input type="text" class="search-input" id="whereInput" placeholder="Search destinations" />
-        </div>
-        <div class="search-divider"></div>
-        <div class="search-segment" onclick="openSearch('checkin')">
-          <span class="search-label">Check in</span>
-          <span class="search-value" id="checkinValue">Add dates</span>
-        </div>
-        <div class="search-divider"></div>
-        <div class="search-segment" onclick="openSearch('checkout')">
-          <span class="search-label">Check out</span>
-          <span class="search-value" id="checkoutValue">Add dates</span>
-        </div>
-        <div class="search-divider"></div>
-        <div class="search-segment guests" onclick="openSearch('guests')">
-          <span class="search-label">Who</span>
-          <span class="search-value" id="guestsValue">Add guests</span>
-        </div>
-        <button class="search-btn" onclick="handleSearch()">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3">
-            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-          </svg>
-        </button>
-      </div>
-
-      <!-- Nav -->
       <nav class="header-nav">
-        <a href="#" class="nav-link">Become a host</a>
+        <a href="provider.html" class="nav-link">Become a guide</a>
         <button class="user-menu" onclick="toggleUserMenu()">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
@@ -74,151 +44,204 @@
           <a href="#" class="dropdown-item">Sign up</a>
           <a href="#" class="dropdown-item">Log in</a>
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">Become a host</a>
+          <a href="#" class="dropdown-item">Become a guide</a>
           <a href="#" class="dropdown-item">Help</a>
         </div>
       </nav>
     </div>
   </header>
 
-  <!-- CATEGORIES -->
-  <div class="categories-bar">
-    <div class="categories-inner">
-      <div class="categories-scroll">
-        <div class="category active" onclick="filterCategory('all')">
-          <span class="cat-icon">🏠</span>
-          <span class="cat-label">All</span>
-        </div>
-        <div class="category" onclick="filterCategory('beach')">
-          <span class="cat-icon">🏖️</span>
-          <span class="cat-label">Beach</span>
-        </div>
-        <div class="category" onclick="filterCategory('mountain')">
-          <span class="cat-icon">⛰️</span>
-          <span class="cat-label">Mountain</span>
-        </div>
-        <div class="category" onclick="filterCategory('city')">
-          <span class="cat-icon">🏙️</span>
-          <span class="cat-label">City</span>
-        </div>
-        <div class="category" onclick="filterCategory('cabin')">
-          <span class="cat-icon">🪵</span>
-          <span class="cat-label">Cabin</span>
-        </div>
-        <div class="category" onclick="filterCategory('lake')">
-          <span class="cat-icon">🏞️</span>
-          <span class="cat-label">Lakefront</span>
-        </div>
-        <div class="category" onclick="filterCategory('farm')">
-          <span class="cat-icon">🌾</span>
-          <span class="cat-label">Farms</span>
-        </div>
-        <div class="category" onclick="filterCategory('treehouse')">
-          <span class="cat-icon">🌳</span>
-          <span class="cat-label">Treehouses</span>
-        </div>
-        <div class="category" onclick="filterCategory('pool')">
-          <span class="cat-icon">🏊</span>
-          <span class="cat-label">Amazing pools</span>
-        </div>
-        <div class="category" onclick="filterCategory('luxury')">
-          <span class="cat-icon">💎</span>
-          <span class="cat-label">Luxury</span>
-        </div>
-        <div class="category" onclick="filterCategory('island')">
-          <span class="cat-icon">🏝️</span>
-          <span class="cat-label">Islands</span>
+  <!-- HERO -->
+  <section class="exp-hero">
+    <div class="exp-hero-bg"></div>
+    <div class="exp-hero-content">
+      <h1>Meet your local guide</h1>
+      <p>Hire a real local person to show you the hidden gems, authentic food, and secret spots only locals know.</p>
+
+      <div class="hero-search">
+        <div class="hero-search-inner">
+          <div class="hs-field">
+            <span class="hs-icon">📍</span>
+            <div>
+              <div class="hs-label">Where</div>
+              <input type="text" id="heroWhere" class="hs-input" placeholder="City or neighborhood" />
+            </div>
+          </div>
+          <div class="hs-divider"></div>
+          <div class="hs-field">
+            <span class="hs-icon">🎯</span>
+            <div>
+              <div class="hs-label">Experience type</div>
+              <select class="hs-select" id="heroType">
+                <option value="">Any experience</option>
+                <option value="food">Food & Drink</option>
+                <option value="nature">Nature & Hiking</option>
+                <option value="culture">Culture & History</option>
+                <option value="photo">Photography</option>
+                <option value="nightlife">Nightlife</option>
+                <option value="adventure">Adventure</option>
+                <option value="art">Art & Craft</option>
+                <option value="wellness">Wellness</option>
+              </select>
+            </div>
+          </div>
+          <div class="hs-divider"></div>
+          <div class="hs-field">
+            <span class="hs-icon">👥</span>
+            <div>
+              <div class="hs-label">Group size</div>
+              <select class="hs-select" id="heroGroup">
+                <option value="">Any size</option>
+                <option value="1">Just me (solo)</option>
+                <option value="2">2 people</option>
+                <option value="small">Small group (3–6)</option>
+                <option value="large">Large group (7+)</option>
+              </select>
+            </div>
+          </div>
+          <button class="hero-search-btn" onclick="handleHeroSearch()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3">
+              <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+            </svg>
+            Search
+          </button>
         </div>
       </div>
-      <button class="filter-btn" onclick="openFilters()">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/>
-        </svg>
-        Filters
-      </button>
     </div>
-  </div>
+  </section>
 
-  <!-- MAIN CONTENT -->
-  <main class="main">
-    <div class="listings-grid" id="listingsGrid">
-      <!-- Cards rendered by JS -->
+  <!-- CATEGORY CHIPS -->
+  <section class="chip-section">
+    <div class="chip-inner">
+      <button class="chip active" onclick="filterGuides('all', this)">✨ All</button>
+      <button class="chip" onclick="filterGuides('food', this)">🍜 Food & Drink</button>
+      <button class="chip" onclick="filterGuides('nature', this)">🥾 Nature & Hiking</button>
+      <button class="chip" onclick="filterGuides('culture', this)">🏛️ Culture & History</button>
+      <button class="chip" onclick="filterGuides('photo', this)">📸 Photography</button>
+      <button class="chip" onclick="filterGuides('nightlife', this)">🎶 Nightlife</button>
+      <button class="chip" onclick="filterGuides('adventure', this)">🧗 Adventure</button>
+      <button class="chip" onclick="filterGuides('art', this)">🎨 Art & Craft</button>
+      <button class="chip" onclick="filterGuides('wellness', this)">🧘 Wellness</button>
     </div>
+  </section>
+
+  <!-- WHY SECTION -->
+  <section class="why-section">
+    <div class="why-inner">
+      <div class="why-card">
+        <div class="why-icon">🤝</div>
+        <h3>Real locals, not tours</h3>
+        <p>Your guide is a real person who lives here — not a tourist agency. Get authentic, personal experiences.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🔒</div>
+        <h3>Verified & reviewed</h3>
+        <p>Every guide is identity-verified, background-checked, and rated by previous travelers.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🎨</div>
+        <h3>Fully customizable</h3>
+        <p>Tell your guide what you love. They'll craft a personalized itinerary just for you.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">💬</div>
+        <h3>Chat before you book</h3>
+        <p>Message your guide directly to ask questions and make sure it's the perfect fit.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GUIDES GRID -->
+  <main class="main">
+    <div class="section-header">
+      <h2 id="gridTitle">All local guides</h2>
+      <span id="guideCount" class="guide-count"></span>
+    </div>
+    <div class="guides-grid" id="guidesGrid"></div>
     <div class="no-results" id="noResults" style="display:none;">
       <div class="no-results-icon">🔍</div>
-      <h3>No results found</h3>
-      <p>Try adjusting your search or filters.</p>
-      <button onclick="filterCategory('all')" class="reset-btn">Clear all filters</button>
+      <h3>No guides found</h3>
+      <p>Try a different category or location.</p>
+      <button onclick="filterGuides('all', document.querySelector('.chip'))" class="reset-btn">Show all guides</button>
     </div>
   </main>
 
-  <!-- LISTING MODAL -->
+  <!-- GUIDE MODAL -->
   <div class="modal-overlay" id="modalOverlay" onclick="closeModal()"></div>
-  <div class="listing-modal" id="listingModal">
+  <div class="listing-modal guide-modal" id="guideModal">
     <button class="modal-close" onclick="closeModal()">✕</button>
     <div class="modal-content" id="modalContent"></div>
   </div>
 
-  <!-- FILTER MODAL -->
-  <div class="modal-overlay" id="filterOverlay" onclick="closeFilters()"></div>
-  <div class="filter-modal" id="filterModal">
-    <div class="filter-header">
-      <button class="modal-close" onclick="closeFilters()">✕</button>
-      <h3>Filters</h3>
-      <span></span>
-    </div>
-    <div class="filter-body">
-      <div class="filter-section">
-        <h4>Price range</h4>
-        <p class="filter-sub">Nightly prices before fees and taxes</p>
-        <div class="price-range">
-          <div class="price-histogram" id="priceHistogram"></div>
-          <div class="range-inputs">
-            <div class="range-field">
-              <label>Minimum</label>
-              <div class="price-input"><span>$</span><input type="number" id="minPrice" value="0" min="0" max="1000" /></div>
-            </div>
-            <div class="range-field">
-              <label>Maximum</label>
-              <div class="price-input"><span>$</span><input type="number" id="maxPrice" value="500" min="0" max="1000" /></div>
-            </div>
+  <!-- BOOKING PANEL (slide-up) -->
+  <div class="booking-panel" id="bookingPanel">
+    <div class="booking-panel-inner">
+      <div class="bp-header">
+        <button class="bp-close" onclick="closeBooking()">✕</button>
+        <h3 id="bpTitle">Book your guide</h3>
+      </div>
+      <div class="bp-body">
+        <div class="bp-guide-row" id="bpGuideRow"></div>
+        <div class="bp-field">
+          <label>Select date</label>
+          <input type="date" id="bpDate" class="bp-input" />
+        </div>
+        <div class="bp-field">
+          <label>Duration</label>
+          <select class="bp-input" id="bpDuration">
+            <option value="2">2 hours</option>
+            <option value="4" selected>4 hours (half day)</option>
+            <option value="8">8 hours (full day)</option>
+          </select>
+        </div>
+        <div class="bp-field">
+          <label>Number of guests</label>
+          <div class="bp-counter">
+            <button onclick="changeGuests(-1)">−</button>
+            <span id="bpGuests">2</span>
+            <button onclick="changeGuests(1)">+</button>
           </div>
         </div>
-      </div>
-      <div class="filter-divider"></div>
-      <div class="filter-section">
-        <h4>Type of place</h4>
-        <div class="type-options">
-          <label class="type-option"><input type="radio" name="placeType" value="any" checked /> <span>Any type</span></label>
-          <label class="type-option"><input type="radio" name="placeType" value="entire" /> <span>Entire place</span></label>
-          <label class="type-option"><input type="radio" name="placeType" value="private" /> <span>Private room</span></label>
-          <label class="type-option"><input type="radio" name="placeType" value="shared" /> <span>Shared room</span></label>
+        <div class="bp-field">
+          <label>Message to guide (optional)</label>
+          <textarea class="bp-textarea" id="bpMessage" placeholder="Tell your guide about your interests, mobility needs, or anything else..."></textarea>
         </div>
-      </div>
-      <div class="filter-divider"></div>
-      <div class="filter-section">
-        <h4>Amenities</h4>
-        <div class="amenities-grid">
-          <label class="amenity-option"><input type="checkbox" value="wifi" /> Wifi</label>
-          <label class="amenity-option"><input type="checkbox" value="kitchen" /> Kitchen</label>
-          <label class="amenity-option"><input type="checkbox" value="washer" /> Washer</label>
-          <label class="amenity-option"><input type="checkbox" value="parking" /> Free parking</label>
-          <label class="amenity-option"><input type="checkbox" value="ac" /> Air conditioning</label>
-          <label class="amenity-option"><input type="checkbox" value="pool" /> Pool</label>
-          <label class="amenity-option"><input type="checkbox" value="hotTub" /> Hot tub</label>
-          <label class="amenity-option"><input type="checkbox" value="gym" /> Gym</label>
-        </div>
+        <div class="bp-price-breakdown" id="bpPriceBreakdown"></div>
+        <button class="bp-confirm-btn" onclick="confirmBooking()">Request to book</button>
+        <p class="bp-note">You won't be charged yet. The guide will confirm within 24 hours.</p>
       </div>
     </div>
-    <div class="filter-footer">
-      <button class="clear-btn" onclick="clearFilters()">Clear all</button>
-      <button class="apply-btn" onclick="applyFilters()">Show results</button>
+  </div>
+  <div class="bp-overlay" id="bpOverlay" onclick="closeBooking()"></div>
+
+  <!-- CHAT PANEL -->
+  <div class="chat-overlay" id="chatOverlay" onclick="closeChat()"></div>
+  <div class="chat-panel" id="chatPanel">
+    <div class="chat-header" id="chatHeader">
+      <button class="chat-close" onclick="closeChat()">✕</button>
+      <div class="chat-guide-info">
+        <img class="chat-avatar" id="chatAvatar" src="data:," alt="" />
+        <div>
+          <div class="chat-guide-name" id="chatGuideName"></div>
+          <div class="chat-status"><span class="online-dot"></span> Online now</div>
+        </div>
+      </div>
+      <button class="chat-book-btn" id="chatBookBtn" onclick="switchToBooking()">Book</button>
+    </div>
+    <div class="chat-messages" id="chatMessages"></div>
+    <div class="chat-suggestions" id="chatSuggestions"></div>
+    <div class="chat-input-row">
+      <input type="text" class="chat-input" id="chatInput" placeholder="Type a message..." onkeydown="if(event.key==='Enter')sendMessage()" />
+      <button class="chat-send-btn" onclick="sendMessage()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
     </div>
   </div>
 
   <!-- TOAST -->
   <div class="toast" id="toast"></div>
 
-  <script src="app.js"></script>
+  <script src="experiences.js"></script>
+  <script src="chatbot.js"></script>
 </body>
 </html>

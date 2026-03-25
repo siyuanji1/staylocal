@@ -391,9 +391,227 @@ function closeModal() {
   activeGuide = null;
 }
 
+// ===== CHAT =====
+const chatHistory = {}; // keyed by guide id
+
+const guideReplies = {
+  food: [
+    "Great question! I love showing people the best hidden food spots here. What kind of cuisine are you most excited to try?",
+    "Absolutely, I can customize the tour around your preferences. Any dietary restrictions I should know about?",
+    "Most of my tours run 3–4 hours with tastings at 6–8 spots. We can go faster or slower depending on your appetite 😄",
+    "I've been doing this for years and I still discover new gems every month. You're in for a treat!",
+    "The best time is usually late morning or evening. Want me to suggest a few dates that work well?",
+  ],
+  nature: [
+    "Hey! Happy to help you plan the perfect outdoor adventure. What's your fitness level — casual hiker or ready to go hard?",
+    "I know trails most people never find on any app. Expect some jaw-dropping views!",
+    "All my hikes include safety briefings and I carry a first aid kit. Your safety is my top priority.",
+    "Wildlife sightings are never guaranteed, but I know the best spots and times of day to maximize chances.",
+    "I'd love to customize this for you! Are you interested more in wildlife, photography, or just pure adventure?",
+  ],
+  culture: [
+    "Oh you're going to love this city's history! It goes way deeper than the tourist guides show.",
+    "I grew up here so I have stories handed down through generations. Not stuff you'll read in any book.",
+    "We can focus on whatever era interests you most — I cover everything from pre-colonial to modern day.",
+    "Music is absolutely woven into everything here. I'll show you where the legends played and where new talent is emerging.",
+    "Want me to arrange a private acoustic session at one of the historic venues? I have connections!",
+  ],
+  photo: [
+    "Awesome! Let me know what gear you're shooting with and I'll tailor the locations to your style.",
+    "I know spots where you can get shots that look like they're from a magazine. Golden hour here is magical.",
+    "Whether you're a beginner or advanced, I'll help you level up. We'll work on composition, light, and timing.",
+    "I can also do portrait sessions if you want some professional-quality photos of yourself in the city.",
+    "The light in this city is incredible around 5–7pm. That's when I love to shoot most.",
+  ],
+  nightlife: [
+    "Oh yes, I know ALL the best spots — and more importantly, how to skip the lines 😎",
+    "I'll get us into places that don't even show up on Google. Real insider access.",
+    "Tell me your vibe — do you prefer rooftop views, live music, craft cocktails, or dancing?",
+    "I can arrange VIP tables at the top spots if you give me a few days notice.",
+    "Safety is always my priority. I'll make sure everyone gets home safely at the end of the night.",
+  ],
+  adventure: [
+    "Let's do it! What's your experience level? I work with total beginners up to seasoned adventurers.",
+    "All equipment is provided and I'm certified in wilderness first aid. You're in safe hands.",
+    "I'll push you just enough to feel the thrill without it being scary. Promise!",
+    "The cave system we visit is one of the most incredible places I've ever been. You'll be speechless.",
+    "What dates are you thinking? I like to check weather conditions to give you the best experience.",
+  ],
+  art: [
+    "I love introducing people to our local art scene — there's so much talent that flies under the radar!",
+    "We can do hands-on workshops, gallery tours, or a mix of both. What sounds more exciting to you?",
+    "I'll introduce you directly to the artists. These conversations are often the highlight of the tour.",
+    "No experience needed for the workshops — I promise you'll create something you're proud of!",
+    "Nashville's art scene is exploding right now. Such an exciting time to visit.",
+  ],
+  wellness: [
+    "Welcome! I'm so glad you're drawn to explore Sedona's incredible energy. It's truly a special place.",
+    "Whether you're a skeptic or a believer, people always leave feeling transformed. The landscape alone does something to you.",
+    "I'll tailor the experience to exactly what you need — deep meditation, gentle yoga, or energy work.",
+    "The vortex sites are most powerful at sunrise and sunset. I'd love to take you at those times if possible.",
+    "Healing work is deeply personal and I hold a safe, judgment-free space for everyone on my tours.",
+  ],
+};
+
+const defaultReplies = [
+  "Thanks for reaching out! I'd love to show you around. What are you most interested in exploring?",
+  "Great to hear from you! I have some amazing spots in mind. When are you planning to visit?",
+  "Happy to answer any questions! Feel free to ask me anything about the experience.",
+  "I typically respond within 30 minutes. What would you like to know?",
+];
+
+const quickSuggestions = [
+  "What's included?",
+  "How long does it last?",
+  "Is this good for beginners?",
+  "Can you customize the tour?",
+  "What should I bring?",
+];
+
 function handleMessage(e) {
   e.stopPropagation();
-  showToast('Opening message thread... 💬');
+  if (!activeGuide) return;
+  openChat(activeGuide);
+  // Close guide modal
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.getElementById('guideModal').classList.remove('open');
+}
+
+function openChat(g) {
+  activeGuide = g;
+  document.getElementById('chatAvatar').src = g.avatar;
+  document.getElementById('chatAvatar').alt = g.name;
+  document.getElementById('chatGuideName').textContent = g.name;
+
+  // Init history if first time
+  if (!chatHistory[g.id]) {
+    chatHistory[g.id] = [];
+    // Opening message from guide
+    const opener = (guideReplies[g.category] || defaultReplies)[0];
+    chatHistory[g.id].push({ from: 'guide', text: opener, time: new Date() });
+  }
+
+  renderChatMessages(g.id);
+  renderSuggestions();
+
+  document.getElementById('chatOverlay').classList.add('open');
+  document.getElementById('chatPanel').classList.add('open');
+  document.body.style.overflow = 'hidden';
+
+  setTimeout(() => {
+    const msgs = document.getElementById('chatMessages');
+    msgs.scrollTop = msgs.scrollHeight;
+    document.getElementById('chatInput').focus();
+  }, 50);
+}
+
+function closeChat() {
+  document.getElementById('chatOverlay').classList.remove('open');
+  document.getElementById('chatPanel').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function switchToBooking() {
+  closeChat();
+  if (activeGuide) openBooking(null, activeGuide.id);
+}
+
+function renderChatMessages(guideId) {
+  const history = chatHistory[guideId] || [];
+  const g = activeGuide;
+  const msgs = document.getElementById('chatMessages');
+
+  msgs.innerHTML = history.map(msg => {
+    const isGuide = msg.from === 'guide';
+    const timeStr = msg.time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    if (isGuide) {
+      return `
+        <div class="chat-msg guide-msg">
+          <img class="cm-avatar" src="${g.avatar}" alt="${g.name}" />
+          <div class="cm-bubble guide-bubble">
+            <div class="cm-text">${msg.text}</div>
+            <div class="cm-time">${timeStr}</div>
+          </div>
+        </div>`;
+    } else {
+      return `
+        <div class="chat-msg user-msg">
+          <div class="cm-bubble user-bubble">
+            <div class="cm-text">${msg.text}</div>
+            <div class="cm-time">${timeStr}</div>
+          </div>
+        </div>`;
+    }
+  }).join('');
+
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function renderSuggestions() {
+  const container = document.getElementById('chatSuggestions');
+  container.innerHTML = quickSuggestions.map(s =>
+    `<button class="suggestion-chip" onclick="sendSuggestion('${s}')">${s}</button>`
+  ).join('');
+}
+
+function sendSuggestion(text) {
+  document.getElementById('chatInput').value = text;
+  sendMessage();
+}
+
+function sendMessage() {
+  const input = document.getElementById('chatInput');
+  const text = input.value.trim();
+  if (!text || !activeGuide) return;
+
+  const guideId = activeGuide.id;
+  if (!chatHistory[guideId]) chatHistory[guideId] = [];
+
+  // Add user message
+  chatHistory[guideId].push({ from: 'user', text, time: new Date() });
+  input.value = '';
+  renderChatMessages(guideId);
+
+  // Hide suggestions after first user message
+  document.getElementById('chatSuggestions').style.display = 'none';
+
+  // Show typing indicator
+  showTypingIndicator();
+
+  // Guide reply after delay
+  const replies = guideReplies[activeGuide.category] || defaultReplies;
+  const userMsgs = chatHistory[guideId].filter(m => m.from === 'user').length;
+  const replyIdx = (userMsgs - 1) % replies.length;
+  // Skip index 0 (used as opener) for subsequent replies
+  const replyText = userMsgs === 1 ? replies[1 % replies.length] : replies[replyIdx];
+
+  setTimeout(() => {
+    hideTypingIndicator();
+    chatHistory[guideId].push({ from: 'guide', text: replyText, time: new Date() });
+    renderChatMessages(guideId);
+  }, 1200 + Math.random() * 800);
+}
+
+function showTypingIndicator() {
+  const msgs = document.getElementById('chatMessages');
+  const g = activeGuide;
+  const existing = document.getElementById('typingIndicator');
+  if (existing) return;
+  const el = document.createElement('div');
+  el.id = 'typingIndicator';
+  el.className = 'chat-msg guide-msg';
+  el.innerHTML = `
+    <img class="cm-avatar" src="${g.avatar}" alt="${g.name}" />
+    <div class="cm-bubble guide-bubble typing-bubble">
+      <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+    </div>`;
+  msgs.appendChild(el);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function hideTypingIndicator() {
+  const el = document.getElementById('typingIndicator');
+  if (el) el.remove();
 }
 
 // ===== BOOKING PANEL =====

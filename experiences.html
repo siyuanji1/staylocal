@@ -24,12 +24,12 @@
 
       <!-- Page Tabs -->
       <div class="page-tabs">
-        <a href="index.html" class="page-tab">Places to stay</a>
-        <a href="experiences.html" class="page-tab active">Local Guides</a>
+        <a href="stays.html" class="page-tab">Places to stay</a>
+        <a href="index.html" class="page-tab active">Local Guides</a>
       </div>
 
       <nav class="header-nav">
-        <a href="#" class="nav-link">Become a guide</a>
+        <a href="provider.html" class="nav-link">Become a guide</a>
         <button class="user-menu" onclick="toggleUserMenu()">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
@@ -214,9 +214,34 @@
   </div>
   <div class="bp-overlay" id="bpOverlay" onclick="closeBooking()"></div>
 
+  <!-- CHAT PANEL -->
+  <div class="chat-overlay" id="chatOverlay" onclick="closeChat()"></div>
+  <div class="chat-panel" id="chatPanel">
+    <div class="chat-header" id="chatHeader">
+      <button class="chat-close" onclick="closeChat()">✕</button>
+      <div class="chat-guide-info">
+        <img class="chat-avatar" id="chatAvatar" src="data:," alt="" />
+        <div>
+          <div class="chat-guide-name" id="chatGuideName"></div>
+          <div class="chat-status"><span class="online-dot"></span> Online now</div>
+        </div>
+      </div>
+      <button class="chat-book-btn" id="chatBookBtn" onclick="switchToBooking()">Book</button>
+    </div>
+    <div class="chat-messages" id="chatMessages"></div>
+    <div class="chat-suggestions" id="chatSuggestions"></div>
+    <div class="chat-input-row">
+      <input type="text" class="chat-input" id="chatInput" placeholder="Type a message..." onkeydown="if(event.key==='Enter')sendMessage()" />
+      <button class="chat-send-btn" onclick="sendMessage()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
+    </div>
+  </div>
+
   <!-- TOAST -->
   <div class="toast" id="toast"></div>
 
   <script src="experiences.js"></script>
+  <script src="chatbot.js"></script>
 </body>
 </html>

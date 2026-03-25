@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StayLocal — Find Your Perfect Local Stay</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="experiences.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-inner">
+      <!-- Logo -->
+      <a href="index.html" class="logo">
+        <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+          <path d="M15 2C10 2 5 8 5 14c0 8 10 16 10 16s10-8 10-16C25 8 20 2 15 2z" fill="#FF385C"/>
+          <circle cx="15" cy="13" r="4" fill="white"/>
+        </svg>
+        <span>StayLocal</span>
+      </a>
+
+      <!-- Page Tabs -->
+      <div class="page-tabs">
+        <a href="stays.html" class="page-tab active">Places to stay</a>
+        <a href="index.html" class="page-tab">Local Guides</a>
+      </div>
+
+      <!-- Search Bar -->
+      <div class="search-bar" id="searchBar">
+        <div class="search-segment" onclick="focusWhere(event)">
+          <span class="search-label">Where</span>
+          <input type="text" class="search-input" id="whereInput" placeholder="Search destinations" onkeydown="if(event.key==='Enter')handleSearch()" />
+        </div>
+        <div class="search-divider"></div>
+        <div class="search-segment date-seg" id="checkinSeg" onclick="openDatePicker('checkin',event)">
+          <span class="search-label">Check in</span>
+          <span class="search-value" id="checkinValue">Add dates</span>
+          <input type="date" id="checkinInput" class="hidden-date" onchange="setCheckin(this.value)" />
+        </div>
+        <div class="search-divider"></div>
+        <div class="search-segment date-seg" id="checkoutSeg" onclick="openDatePicker('checkout',event)">
+          <span class="search-label">Check out</span>
+          <span class="search-value" id="checkoutValue">Add dates</span>
+          <input type="date" id="checkoutInput" class="hidden-date" onchange="setCheckout(this.value)" />
+        </div>
+        <div class="search-divider"></div>
+        <div class="search-segment guests" id="guestSeg" onclick="toggleGuestPicker(event)">
+          <span class="search-label">Who</span>
+          <span class="search-value" id="guestsValue">Add guests</span>
+        </div>
+        <button class="search-btn" onclick="handleSearch()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Guest Picker Dropdown -->
+      <div class="guest-picker" id="guestPicker">
+        <div class="gp-row">
+          <div><div class="gp-label">Adults</div><div class="gp-sub">Ages 13+</div></div>
+          <div class="gp-counter"><button onclick="changePickerGuests('adults',-1)">−</button><span id="gpAdults">0</span><button onclick="changePickerGuests('adults',1)">+</button></div>
+        </div>
+        <div class="gp-row">
+          <div><div class="gp-label">Children</div><div class="gp-sub">Ages 2–12</div></div>
+          <div class="gp-counter"><button onclick="changePickerGuests('children',-1)">−</button><span id="gpChildren">0</span><button onclick="changePickerGuests('children',1)">+</button></div>
+        </div>
+        <div class="gp-row">
+          <div><div class="gp-label">Infants</div><div class="gp-sub">Under 2</div></div>
+          <div class="gp-counter"><button onclick="changePickerGuests('infants',-1)">−</button><span id="gpInfants">0</span><button onclick="changePickerGuests('infants',1)">+</button></div>
+        </div>
+        <button class="gp-done" onclick="closeGuestPicker()">Done</button>
+      </div>
+
+      <!-- Nav -->
+      <nav class="header-nav">
+        <a href="provider.html" class="nav-link">Become a host</a>
+        <button class="user-menu" onclick="toggleUserMenu()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+          <div class="user-avatar">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#717171" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+            </svg>
+          </div>
+        </button>
+        <div class="user-dropdown" id="userDropdown">
+          <a href="#" class="dropdown-item">Sign up</a>
+          <a href="#" class="dropdown-item">Log in</a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">Become a host</a>
+          <a href="#" class="dropdown-item">Help</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CATEGORIES -->
+  <div class="categories-bar">
+    <div class="categories-inner">
+      <div class="categories-scroll">
+        <div class="category active" onclick="filterCategory('all')">
+          <span class="cat-icon">🏠</span>
+          <span class="cat-label">All</span>
+        </div>
+        <div class="category" onclick="filterCategory('beach')">
+          <span class="cat-icon">🏖️</span>
+          <span class="cat-label">Beach</span>
+        </div>
+        <div class="category" onclick="filterCategory('mountain')">
+          <span class="cat-icon">⛰️</span>
+          <span class="cat-label">Mountain</span>
+        </div>
+        <div class="category" onclick="filterCategory('city')">
+          <span class="cat-icon">🏙️</span>
+          <span class="cat-label">City</span>
+        </div>
+        <div class="category" onclick="filterCategory('cabin')">
+          <span class="cat-icon">🪵</span>
+          <span class="cat-label">Cabin</span>
+        </div>
+        <div class="category" onclick="filterCategory('lake')">
+          <span class="cat-icon">🏞️</span>
+          <span class="cat-label">Lakefront</span>
+        </div>
+        <div class="category" onclick="filterCategory('farm')">
+          <span class="cat-icon">🌾</span>
+          <span class="cat-label">Farms</span>
+        </div>
+        <div class="category" onclick="filterCategory('treehouse')">
+          <span class="cat-icon">🌳</span>
+          <span class="cat-label">Treehouses</span>
+        </div>
+        <div class="category" onclick="filterCategory('pool')">
+          <span class="cat-icon">🏊</span>
+          <span class="cat-label">Amazing pools</span>
+        </div>
+        <div class="category" onclick="filterCategory('luxury')">
+          <span class="cat-icon">💎</span>
+          <span class="cat-label">Luxury</span>
+        </div>
+        <div class="category" onclick="filterCategory('island')">
+          <span class="cat-icon">🏝️</span>
+          <span class="cat-label">Islands</span>
+        </div>
+      </div>
+      <div class="bar-actions">
+        <select class="sort-select" id="sortSelect" onchange="applySortAndFilter()">
+          <option value="default">Sort: Default</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="rating">Top Rated</option>
+        </select>
+        <button class="wishlist-btn" onclick="openWishlist()" title="Saved">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          Saved
+        </button>
+        <button class="filter-btn" onclick="openFilters()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/>
+          </svg>
+          Filters
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+    <div class="listings-grid" id="listingsGrid">
+      <!-- Cards rendered by JS -->
+    </div>
+    <div class="no-results" id="noResults" style="display:none;">
+      <div class="no-results-icon">🔍</div>
+      <h3>No results found</h3>
+      <p>Try adjusting your search or filters.</p>
+      <button onclick="filterCategory('all')" class="reset-btn">Clear all filters</button>
+    </div>
+  </main>
+
+  <!-- LISTING MODAL -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal()"></div>
+  <div class="listing-modal" id="listingModal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-content" id="modalContent"></div>
+  </div>
+
+  <!-- FILTER MODAL -->
+  <div class="modal-overlay" id="filterOverlay" onclick="closeFilters()"></div>
+  <div class="filter-modal" id="filterModal">
+    <div class="filter-header">
+      <button class="modal-close" onclick="closeFilters()">✕</button>
+      <h3>Filters</h3>
+      <span></span>
+    </div>
+    <div class="filter-body">
+      <div class="filter-section">
+        <h4>Price range</h4>
+        <p class="filter-sub">Nightly prices before fees and taxes</p>
+        <div class="price-range">
+          <div class="price-histogram" id="priceHistogram"></div>
+          <div class="range-inputs">
+            <div class="range-field">
+              <label>Minimum</label>
+              <div class="price-input"><span>$</span><input type="number" id="minPrice" value="0" min="0" max="1000" /></div>
+            </div>
+            <div class="range-field">
+              <label>Maximum</label>
+              <div class="price-input"><span>$</span><input type="number" id="maxPrice" value="500" min="0" max="1000" /></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="filter-divider"></div>
+      <div class="filter-section">
+        <h4>Type of place</h4>
+        <div class="type-options">
+          <label class="type-option"><input type="radio" name="placeType" value="any" checked /> <span>Any type</span></label>
+          <label class="type-option"><input type="radio" name="placeType" value="entire" /> <span>Entire place</span></label>
+          <label class="type-option"><input type="radio" name="placeType" value="private" /> <span>Private room</span></label>
+          <label class="type-option"><input type="radio" name="placeType" value="shared" /> <span>Shared room</span></label>
+        </div>
+      </div>
+      <div class="filter-divider"></div>
+      <div class="filter-section">
+        <h4>Amenities</h4>
+        <div class="amenities-grid">
+          <label class="amenity-option"><input type="checkbox" value="wifi" /> Wifi</label>
+          <label class="amenity-option"><input type="checkbox" value="kitchen" /> Kitchen</label>
+          <label class="amenity-option"><input type="checkbox" value="washer" /> Washer</label>
+          <label class="amenity-option"><input type="checkbox" value="parking" /> Free parking</label>
+          <label class="amenity-option"><input type="checkbox" value="ac" /> Air conditioning</label>
+          <label class="amenity-option"><input type="checkbox" value="pool" /> Pool</label>
+          <label class="amenity-option"><input type="checkbox" value="hotTub" /> Hot tub</label>
+          <label class="amenity-option"><input type="checkbox" value="gym" /> Gym</label>
+        </div>
+      </div>
+    </div>
+    <div class="filter-footer">
+      <button class="clear-btn" onclick="clearFilters()">Clear all</button>
+      <button class="apply-btn" onclick="applyFilters()">Show results</button>
+    </div>
+  </div>
+
+  <!-- WISHLIST PANEL -->
+  <div class="wishlist-overlay" id="wishlistOverlay" onclick="closeWishlist()"></div>
+  <div class="wishlist-panel" id="wishlistPanel">
+    <div class="wp-header">
+      <h3>Saved listings</h3>
+      <button class="modal-close" onclick="closeWishlist()">✕</button>
+    </div>
+    <div class="wp-body" id="wishlistBody"></div>
+  </div>
+
+  <!-- STAY BOOKING PANEL -->
+  <div class="bp-overlay" id="bpOverlay" onclick="closeStayBooking()"></div>
+  <div class="booking-panel" id="bookingPanel">
+    <div class="booking-panel-inner">
+      <div class="bp-header">
+        <button class="bp-close" onclick="closeStayBooking()">✕</button>
+        <h3>Confirm your stay</h3>
+      </div>
+      <div class="bp-body">
+        <div id="bpListingInfo"></div>
+        <div class="bp-field">
+          <label>Check-in date</label>
+          <input type="date" id="bpCheckin" class="bp-input" />
+        </div>
+        <div class="bp-field">
+          <label>Check-out date</label>
+          <input type="date" id="bpCheckout" class="bp-input" />
+        </div>
+        <div class="bp-field">
+          <label>Number of guests</label>
+          <div class="bp-counter">
+            <button onclick="changeStayGuests(-1)">−</button>
+            <span id="bpGuestCount">2</span>
+            <button onclick="changeStayGuests(1)">+</button>
+          </div>
+        </div>
+        <div class="bp-field">
+          <label>Message to host (optional)</label>
+          <textarea class="bp-textarea" id="bpStayMessage" placeholder="Tell your host about your trip, arrival time, or any special requests..."></textarea>
+        </div>
+        <div id="bpPriceBreakdown"></div>
+        <button class="bp-confirm-btn" onclick="confirmStayBooking()">Request to book</button>
+        <p class="bp-note">You won't be charged yet. The host will confirm within 24 hours.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- GUIDE RECOMMENDATIONS MODAL -->
+  <div class="guide-rec-overlay" id="guideRecOverlay" onclick="closeGuideRec()"></div>
+  <div class="guide-rec-modal" id="guideRecModal">
+    <button class="modal-close" onclick="closeGuideRec()">✕</button>
+    <div class="guide-rec-success">
+      <div class="guide-rec-success-icon">🎉</div>
+      <h2>Booking request sent!</h2>
+      <p id="guideRecMsg"></p>
+    </div>
+    <div class="guide-rec-section">
+      <h3 id="guideRecTitle">Explore with a local guide</h3>
+      <p class="guide-rec-sub">Real locals who know all the hidden gems — chat with them before you book.</p>
+      <div class="guide-rec-cards" id="guideRecCards"></div>
+    </div>
+    <div class="guide-rec-footer">
+      <a href="index.html" class="guide-rec-browse-btn">Browse all local guides →</a>
+    </div>
+  </div>
+
+  <!-- CHAT PANEL (for chatting with recommended guides) -->
+  <div class="chat-overlay" id="chatOverlay" onclick="closeStaysChat()"></div>
+  <div class="chat-panel" id="chatPanel">
+    <div class="chat-header" id="chatHeader">
+      <button class="chat-close" onclick="closeStaysChat()">✕</button>
+      <div class="chat-guide-info">
+        <img class="chat-avatar" id="chatAvatar" src="data:," alt="" />
+        <div>
+          <div class="chat-guide-name" id="chatGuideName"></div>
+          <div class="chat-status"><span class="online-dot"></span> Online now</div>
+        </div>
+      </div>
+      <a href="index.html" class="chat-book-btn">Book guide</a>
+    </div>
+    <div class="chat-messages" id="chatMessages"></div>
+    <div class="chat-suggestions" id="chatSuggestions"></div>
+    <div class="chat-input-row">
+      <input type="text" class="chat-input" id="chatInput" placeholder="Type a message..." onkeydown="if(event.key==='Enter')sendStaysMessage()" />
+      <button class="chat-send-btn" onclick="sendStaysMessage()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <script src="app.js"></script>
+  <script src="chatbot.js"></script>
+</body>
+</html>
