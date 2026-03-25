@@ -528,12 +528,15 @@ function handleReserve() {
   closeModal();
 
   const today = new Date().toISOString().split('T')[0];
-  const bpCheckin = document.getElementById('bpCheckin');
-  const bpCheckout = document.getElementById('bpCheckout');
+  const bpCheckin = document.getElementById('bpCheckinHidden');
+  const bpCheckout = document.getElementById('bpCheckoutHidden');
   bpCheckin.min = today;
-  bpCheckin.value = checkinDate || '';
   bpCheckout.min = checkinDate || today;
-  bpCheckout.value = checkoutDate || '';
+  // Pre-fill from search bar dates if set
+  if (checkinDate) { bpCheckin.value = checkinDate; setBpCheckin(checkinDate); }
+  else { bpCheckin.value = ''; document.getElementById('bpCheckinDisplay').textContent = 'Select date'; }
+  if (checkoutDate) { bpCheckout.value = checkoutDate; setBpCheckout(checkoutDate); }
+  else { bpCheckout.value = ''; document.getElementById('bpCheckoutDisplay').textContent = 'Select date'; }
 
   stayGuestCount = Math.max(1, guestCounts.adults + guestCounts.children) || 2;
   document.getElementById('bpGuestCount').textContent = stayGuestCount;
@@ -566,11 +569,36 @@ function changeStayGuests(delta) {
   document.getElementById('bpGuestCount').textContent = stayGuestCount;
 }
 
+function triggerBpDate(inputId) {
+  const input = document.getElementById(inputId);
+  if (!input) return;
+  if (input.showPicker) { try { input.showPicker(); } catch(e) { input.click(); } }
+  else { input.click(); }
+}
+
+function setBpCheckin(val) {
+  document.getElementById('bpCheckinHidden').value = val;
+  const d = new Date(val + 'T00:00:00');
+  document.getElementById('bpCheckinDisplay').textContent = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  document.getElementById('bpCheckinDisplay').style.color = '#222';
+  // Update checkout min
+  document.getElementById('bpCheckoutHidden').min = val;
+  updateStayPriceBreakdown();
+}
+
+function setBpCheckout(val) {
+  document.getElementById('bpCheckoutHidden').value = val;
+  const d = new Date(val + 'T00:00:00');
+  document.getElementById('bpCheckoutDisplay').textContent = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  document.getElementById('bpCheckoutDisplay').style.color = '#222';
+  updateStayPriceBreakdown();
+}
+
 function updateStayPriceBreakdown() {
   const l = currentBookingListing;
   if (!l) return;
-  const cin = document.getElementById('bpCheckin').value;
-  const cout = document.getElementById('bpCheckout').value;
+  const cin = document.getElementById('bpCheckinHidden').value;
+  const cout = document.getElementById('bpCheckoutHidden').value;
   const el = document.getElementById('bpPriceBreakdown');
   if (cin && cout && cout > cin) {
     const nights = Math.max(1, Math.round((new Date(cout) - new Date(cin)) / 86400000));
@@ -589,8 +617,8 @@ function updateStayPriceBreakdown() {
 }
 
 function confirmStayBooking() {
-  const cin = document.getElementById('bpCheckin').value;
-  const cout = document.getElementById('bpCheckout').value;
+  const cin = document.getElementById('bpCheckinHidden').value;
+  const cout = document.getElementById('bpCheckoutHidden').value;
   if (!cin || !cout) { showToast('Please select check-in and check-out dates'); return; }
   if (cout <= cin) { showToast('Check-out must be after check-in'); return; }
   closeStayBooking();
@@ -797,7 +825,7 @@ function sendStaysMessage() {
 
 // Update price breakdown when dates change in booking panel
 document.addEventListener('change', e => {
-  if (e.target.id === 'bpCheckin' || e.target.id === 'bpCheckout') updateStayPriceBreakdown();
+  if (e.target.id === 'bpCheckinHidden' || e.target.id === 'bpCheckoutHidden') updateStayPriceBreakdown();
 });
 
 // ===== SEARCH =====

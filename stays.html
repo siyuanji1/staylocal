@@ -269,11 +269,19 @@
         <div id="bpListingInfo"></div>
         <div class="bp-field">
           <label>Check-in date</label>
-          <input type="date" id="bpCheckin" class="bp-input" />
+          <div class="bp-date-row" onclick="triggerBpDate('bpCheckinHidden')">
+            <span id="bpCheckinDisplay" class="bp-date-display">Select date</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#717171" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <input type="date" id="bpCheckinHidden" class="hidden-date" onchange="setBpCheckin(this.value)" />
+          </div>
         </div>
         <div class="bp-field">
           <label>Check-out date</label>
-          <input type="date" id="bpCheckout" class="bp-input" />
+          <div class="bp-date-row" onclick="triggerBpDate('bpCheckoutHidden')">
+            <span id="bpCheckoutDisplay" class="bp-date-display">Select date</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#717171" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <input type="date" id="bpCheckoutHidden" class="hidden-date" onchange="setBpCheckout(this.value)" />
+          </div>
         </div>
         <div class="bp-field">
           <label>Number of guests</label>

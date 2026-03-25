@@ -749,3 +749,14 @@ input { font-family: inherit; }
   #ai-chat-panel { width: calc(100vw - 32px); height: 70vh; }
   #ai-chat-widget { bottom: 16px; right: 16px; }
 }
+
+/* ===== BOOKING PANEL DATE ROW ===== */
+.bp-date-row {
+  width: 100%; padding: 12px 14px;
+  border: 1.5px solid #ddd; border-radius: 10px;
+  display: flex; align-items: center; justify-content: space-between;
+  cursor: pointer; transition: border-color 0.2s;
+  background: white; position: relative;
+}
+.bp-date-row:hover { border-color: #222; }
+.bp-date-display { font-size: 15px; color: #aaa; flex: 1; }
